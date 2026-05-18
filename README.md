@@ -1,5 +1,7 @@
 ﻿# Magic Square 작성 예제
 
+- staging 브랜치 추가
+
 ## 작업 요약
 
 MagicSquare 프로젝트에 ECB(Entity-Control-Boundary) 아키텍처와 TDD 흐름을
