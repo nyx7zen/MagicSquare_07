@@ -1,4 +1,4 @@
-﻿# MagicSquare_07
+﻿# Magic Square 작성 예제
 
 ## 작업 요약
 
