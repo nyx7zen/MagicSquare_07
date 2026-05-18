@@ -1,0 +1,50 @@
+---
+description: MagicSquare Python TDD and pytest testing rules
+globs: "**/*.py"
+alwaysApply: false
+---
+
+tdd_rules:
+  red_phase:
+    description: 테스트를 먼저 작성하고 실패를 확인하는 단계
+    rules:
+      - 구현 코드 작성 전에 실패하는 pytest 테스트를 먼저 작성한다.
+      - 테스트 실패 원인이 기대한 기능 미구현 때문인지 확인한다.
+      - 실패를 확인한 후에만 green_phase로 진행한다.
+    must_not:
+      - 테스트 없이 구현 코드를 먼저 작성하지 않는다.
+      - 실패 확인 없이 다음 단계로 넘어가지 않는다.
+      - 여러 기능을 한 번에 테스트하지 않는다.
+
+  green_phase:
+    description: 최소 코드로 테스트를 통과시키는 단계
+    rules:
+      - 현재 실패한 테스트를 통과시키는 최소 Python 코드만 작성한다.
+      - 불필요한 추상화나 구조 변경을 하지 않는다.
+      - 테스트 통과 여부를 확인한 뒤 refactor_phase로 진행한다.
+    must_not:
+      - 이 단계에서 리팩터링하지 않는다.
+      - 아직 테스트하지 않은 기능을 미리 구현하지 않는다.
+      - 코드 스타일 개선을 이유로 동작을 변경하지 않는다.
+
+  refactor_phase:
+    description: 기능 변경 없이 구조를 개선하는 단계
+    rules:
+      - 모든 테스트가 통과하는 상태에서만 리팩터링한다.
+      - 기능 동작은 변경하지 않는다.
+      - 기존 테스트 커버리지를 유지한다.
+      - 테스트 커버리지가 프로젝트 기준보다 낮아지지 않도록 한다.
+    must_not:
+      - 테스트 실패 상태에서 리팩터링하지 않는다.
+      - 새 기능을 추가하지 않는다.
+      - 커버리지를 낮추지 않는다.
+
+testing:
+  framework: pytest
+  pattern: AAA
+  coverage_minimum: 80%
+  fixture_scope:
+    function: 테스트 간 상태 공유를 막기 위한 기본 scope
+    module: 생성 비용이 큰 읽기 전용 데이터에만 허용
+    session: 외부 리소스 초기화가 필요한 경우에만 제한적으로 허용
+  naming_convention: test_ 접두사 필수

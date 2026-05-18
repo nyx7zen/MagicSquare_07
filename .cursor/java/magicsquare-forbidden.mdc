@@ -1,0 +1,19 @@
+---
+description: MagicSquare Java forbidden patterns and alternatives
+globs: "**/*.java"
+alwaysApply: false
+---
+
+forbidden:
+  - pattern: System.out.println()
+    reason: 테스트와 애플리케이션 로직에서 출력 부작용을 만들 수 있다.
+    alternative: boundary 레이어에서 출력하거나 logging 인터페이스를 사용한다.
+  - pattern: 하드코딩 상수
+    reason: 마방진 차수, 기준 합계, 메시지가 코드 곳곳에 흩어지면 유지보수가 어렵다.
+    alternative: 의미 있는 이름의 static final 상수 또는 설정값으로 분리한다.
+  - pattern: catch (Exception e) 후 무시
+    reason: 모든 예외를 삼켜 실제 오류 원인을 숨길 수 있다.
+    alternative: 구체적인 예외 타입을 명시하고 필요한 경우 다시 throw한다.
+  - pattern: public mutable field
+    reason: 엔티티의 불변성과 캡슐화를 깨뜨려 도메인 규칙이 우회될 수 있다.
+    alternative: private final 필드와 필요한 getter 또는 검증된 메서드를 사용한다.

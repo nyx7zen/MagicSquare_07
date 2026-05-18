@@ -1,0 +1,33 @@
+---
+description: MagicSquare C++ ECB architecture and dependency direction rules
+alwaysApply: true
+---
+
+architecture:
+  pattern: ECB
+  language: C++
+  layers:
+    boundary:
+      responsibility: 외부 입출력 담당
+      examples:
+        - CLI
+        - UI
+        - API
+    control:
+      responsibility: 비즈니스 로직 담당
+      examples:
+        - 마방진 생성 흐름 제어
+        - 입력 검증 흐름 제어
+        - 결과 검증 흐름 제어
+    entity:
+      responsibility: 도메인 데이터 및 규칙 담당
+      examples:
+        - MagicSquare 데이터 구조
+        - 마방진 성립 규칙
+        - 합계 검증 규칙
+  dependency_direction:
+    allowed:
+      - boundary는 control에 의존할 수 있다.
+      - control은 entity에 의존할 수 있다.
+      - entity는 boundary와 control에 의존하면 안 된다.
+    rule: 의존성 방향은 boundary -> control -> entity만 허용한다.

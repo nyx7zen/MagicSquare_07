@@ -1,0 +1,45 @@
+---
+description: MagicSquare Python project purpose, structure, and AI behavior rules
+alwaysApply: true
+---
+
+project:
+  name: MagicSquare
+  description: 마방진 생성, 검증, 출력 기능을 TDD 기반으로 구현하는 Python 프로젝트
+  domain: magic_square
+  primary_goal: 입력된 차수에 맞는 올바른 마방진을 생성하고 검증한다.
+  language: Python
+
+file_structure:
+  tree: |
+    # MagicSquare_07/
+    # ├── boundary/
+    # │   └── CLI, UI, API 등 외부 입출력 코드
+    # ├── control/
+    # │   └── 마방진 생성 및 검증 흐름 제어 코드
+    # ├── entity/
+    # │   └── 마방진 도메인 데이터와 규칙 코드
+    # └── tests/
+    #     ├── boundary/
+    #     ├── control/
+    #     └── entity/
+  required_directories:
+    - boundary/
+    - control/
+    - entity/
+    - tests/
+
+ai_behavior:
+  before_coding:
+    - 코드 작성 전 관련 pytest 테스트 파일을 먼저 확인한다.
+    - 기존 ECB 레이어 구조와 의존성 방향을 확인한다.
+    - 변경 대상 기능에 대한 실패 테스트가 있는지 확인한다.
+  while_coding:
+    - ECB 레이어 경계를 위반하지 않는다.
+    - 타입힌트 없는 Python 함수를 생성하지 않는다.
+    - public 메서드에는 Google 스타일 docstring을 작성한다.
+    - tdd_rules 위반 가능성이 있으면 사용자에게 경고한다.
+  after_coding:
+    - 관련 pytest 테스트 실행을 권장하거나 수행한다.
+    - 테스트 커버리지가 80% 미만으로 내려가지 않았는지 확인한다.
+    - 리팩터링 후 기능 동작이 변경되지 않았는지 확인한다.
